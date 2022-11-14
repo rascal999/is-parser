@@ -70,7 +70,9 @@ def main():
         continue
       out_of_range = True
       # Only include issues in range
-      if issue['score'] >= parsed.min_cvss and issue['score'] <= parsed.max_cvss:
+      if len(issue['score']) == 0:
+        issue['score'] = 0
+      if float(issue['score']) >= parsed.min_cvss and float(issue['score']) <= parsed.max_cvss:
         out_of_range = False
       if out_of_range:
         continue
@@ -78,7 +80,7 @@ def main():
       temp_obj = Template(template_string)
       if len(issue['cveLink']) == 0:
         issue['cveLink'] = "N/A"
-      issue_file = open(parsed.output + "/" + issue['test'].replace("/","_") + ".tex", "w")
+      issue_file = open(parsed.output + "/" + issue['test'].replace("/","_").replace('"',"") + ".tex", "w")
       issue_file.write(
         temp_obj.substitute(
           cvss3=issue['score'],
