@@ -13,7 +13,7 @@
 \label{sec:creds}
 \noindent
 
-\vulntext{$cvss3}
+\vulntext{$score}
 
 \noindent
 
@@ -21,6 +21,12 @@
 \textbf{Description}:
 
 $synopsis
+
+This issue is checked under the following standard(s):
+
+    \begin{itemize}
+$regulations
+    \end{itemize}
 
 %\noindent
 %\textbf{Potential Business Impact}:

@@ -32,9 +32,9 @@ def welcome():
 
 def main():
     parser = argparse.ArgumentParser(description="Parse IS JS file (containing JSON object) to output issues based on template file.")
-    parser.add_argument("--min-cvss", required=False, type=float, default=0, choices=[Range(0.0, 10.0)],
-                        help="Only include issues with at least this rating or above (default: 0)")
-    parser.add_argument("--max-cvss", required=False, type=float, default=10, choices=[Range(0.0, 10.0)],
+    parser.add_argument("--min-score", required=False, type=float, default=1, choices=[Range(0.0, 10.0)],
+                        help="Only include issues with at least this rating or above (default: 1)")
+    parser.add_argument("--max-score", required=False, type=float, default=10, choices=[Range(0.0, 10.0)],
                         help="Only include issues with less than or equal to this rating (default: 10)")
     parser.add_argument("--js", required=False, default="AssessmentResults.js",
                         help="IS JS file")
@@ -72,20 +72,21 @@ def main():
       # Only include issues in range
       if len(issue['score']) == 0:
         issue['score'] = 0
-      if float(issue['score']) >= parsed.min_cvss and float(issue['score']) <= parsed.max_cvss:
+      if float(issue['score']) >= parsed.min_score and float(issue['score']) <= parsed.max_score:
         out_of_range = False
       if out_of_range:
         continue
+      if len(issue['regulations']) == 0:
+        issue['regulations'] = ['N/A']
 
       temp_obj = Template(template_string)
       issue_file = open(parsed.output + "/" + issue['test'].replace("/","_").replace('"',"").replace('\_','_') + ".tex", "w")
       issue_file.write(
         temp_obj.substitute(
-          cvss3=issue['score'],
+          score=issue['score'],
           name=issue['test'],
-          plugin_output=issue['regulations'],
+          regulations=''.join('        \item %s\n' % regulation for regulation in issue['regulations']),
           synopsis=issue['details'].replace("<br>","\n\n"),
-          # There must be a better way..
           host=host,
           solution=issue['remediation'].replace("<br>","\n\n"),
           see_also = "N/A"
