@@ -37,10 +37,12 @@ $host
 %\noindent
 %\textbf{Exploitation Details}:
 
+\iffalse
 \noindent
 \textbf{Recommendations}:
 
 $solution
+\fi
 
 %\noindent
 %\textbf{Further Reading}:
