@@ -9,7 +9,7 @@
 % Charles Barone - https://github.com/CharlesBarone   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Internal Infrastructure: $name}
+\subsubsection{Database Review: $name}
 \label{sec:creds}
 \noindent
 
@@ -34,24 +34,13 @@ $synopsis
 $host
     \end{itemize}
 
-\noindent
-\textbf{Exploitation Details}:
-
-    The following evidence is provided as proof for the presence of this issue:
-
-    \begin{lstlisting}[language=bash,frame=single,showstringspaces=false]
-$plugin_output
-    \end{lstlisting}
-
-    The following CVEs are related to this issue and provide additional information:
-    \begin{itemize}
-%$cve
-    \end{itemize}
+%\noindent
+%\textbf{Exploitation Details}:
 
 \noindent
-%\textbf{Recommendations}:
+\textbf{Recommendations}:
 
-%$solution
+$solution
 
 %\noindent
 %\textbf{Further Reading}:

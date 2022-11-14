@@ -50,7 +50,7 @@ def main():
 
     # Open JS file
     with open(parsed.js, 'r') as file:
-      data = file.read().replace('"','\"').replace("'",'"').replace("ASSESSMENT_RESULTS = ","").replace("};","}").replace("<br>"," ")
+      data = file.read().replace('"','\"').replace("'",'"').replace("ASSESSMENT_RESULTS = ","").replace("};","}").replace('_',"\\\_")
 
     json_obj = json.loads(data)
 
@@ -78,19 +78,16 @@ def main():
         continue
 
       temp_obj = Template(template_string)
-      if len(issue['cveLink']) == 0:
-        issue['cveLink'] = "N/A"
-      issue_file = open(parsed.output + "/" + issue['test'].replace("/","_").replace('"',"") + ".tex", "w")
+      issue_file = open(parsed.output + "/" + issue['test'].replace("/","_").replace('"',"").replace('\_','_') + ".tex", "w")
       issue_file.write(
         temp_obj.substitute(
           cvss3=issue['score'],
           name=issue['test'],
           plugin_output=issue['regulations'],
-          synopsis=issue['description'],
+          synopsis=issue['details'].replace("<br>","\n\n"),
           # There must be a better way..
-          cve="        \item \\href{{https://cve.mitre.org/cgi-bin/cvename.cgi?name={0}}}{{{0}}}\n".format("".join(cve for cve in issue['cveLink'].split())),
           host=host,
-          solution=issue['remediation'],
+          solution=issue['remediation'].replace("<br>","\n\n"),
           see_also = "N/A"
         )
       )
