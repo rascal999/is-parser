@@ -1,0 +1,61 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Penetration Test Report Template           %
+%                     cyber@cfreg                     %
+%             https://hack.newhaven.edu/              %
+%                                                     %
+%                    Contributors:                    %
+% TJ Balon - https://github.com/balon                 %
+% Samuel Zurowski - https://github.com/samuelzurowski %
+% Charles Barone - https://github.com/CharlesBarone   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Internal Infrastructure: $name}
+\label{sec:creds}
+\noindent
+
+\vulntext{$cvss3}
+
+\noindent
+
+\color{black}{}
+\textbf{Description}:
+
+$synopsis
+
+%\noindent
+%\textbf{Potential Business Impact}:
+
+%XXX
+
+\noindent
+\textbf{Affected Target}:
+
+    \begin{itemize}
+$host
+    \end{itemize}
+
+\noindent
+\textbf{Exploitation Details}:
+
+    The following evidence is provided as proof for the presence of this issue:
+
+    \begin{lstlisting}[language=bash,frame=single,showstringspaces=false]
+$plugin_output
+    \end{lstlisting}
+
+    The following CVEs are related to this issue and provide additional information:
+    \begin{itemize}
+%$cve
+    \end{itemize}
+
+\noindent
+%\textbf{Recommendations}:
+
+%$solution
+
+%\noindent
+%\textbf{Further Reading}:
+
+%$see_also
+
+\newpage
